@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Resume</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      width: 100%;
+      height: 100%;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    .resume-wrapper {
+      width: 100%;
+      min-height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .resume-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveBackground 20s linear infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes moveBackground {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+    
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .shape {
+      position: absolute;
+      opacity: 0.15;
+      animation: float 15s infinite ease-in-out;
+    }
+    
+    .shape-1 {
+      width: 150px;
+      height: 150px;
+      background: #ffd700;
+      border-radius: 50%;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    
+    .shape-2 {
+      width: 100px;
+      height: 100px;
+      background: #ff6b6b;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+    
+    .shape-3 {
+      width: 120px;
+      height: 120px;
+      background: #4ecdc4;
+      transform: rotate(45deg);
+      bottom: 15%;
+      left: 15%;
+      animation-delay: 4s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(10deg); }
+    }
+    
+    .resume-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+      padding: 3.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+    
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .name {
+      font-size: 5rem;
+      font-weight: 800;
+      color: white;
+      margin: 0 0 0.5rem 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      letter-spacing: -1px;
+    }
+    
+    .job-title {
+      font-size: 2.2rem;
+      color: rgba(255, 255, 255, 0.95);
+      margin: 0 0 2rem 0;
+      font-weight: 500;
+    }
+    
+    .contact-bar {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      color: white;
+      font-size: 1.3rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.9rem 1.6rem;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .contact-icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .main-content {
+      padding: 3rem;
+    }
+    
+    .section {
+      margin-bottom: 3rem;
+    }
+    
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .section-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+    
+    .about-text {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      color: #555;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border-left: 5px solid #667eea;
+    }
+    
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .education-card {
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .education-card::before {
+      content: '🎓';
+      position: absolute;
+      font-size: 6rem;
+      top: -1rem;
+      right: -1rem;
+      opacity: 0.2;
+    }
+    
+    .degree {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #ff6b6b;
+      margin: 0 0 0.5rem 0;
+    }
+    
+    .institution {
+      font-size: 1.3rem;
+      color: #666;
+      margin: 0 0 0.3rem 0;
+      font-weight: 500;
+    }
+    
+    .graduation {
+      font-size: 1.1rem;
+      color: #888;
+      font-style: italic;
+    }
+    
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    
+    .skill-bubble {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      padding: 1.6rem;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #333;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+    
+    .skill-bubble:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .projects-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    
+    .project-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      border: 3px solid transparent;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    }
+    
+    .project-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .project-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #667eea;
+      margin: 0 0 1rem 0;
+    }
+    
+    .project-description {
+      font-size: 1.3rem;
+      line-height: 1.7;
+      color: #666;
+    }
+    
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.2rem;
+    }
+    
+    .hobby-card {
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    
+    .hobby-card:hover {
+      transform: scale(1.1) rotate(2deg);
+    }
+    
+    .hobby-icon {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .resume-wrapper {
+        padding: 1.5rem;
+      }
+      
+      .header {
+        padding: 2.5rem 2rem;
+      }
+      
+      .name {
+        font-size: 2.5rem;
+      }
+      
+      .job-title {
+        font-size: 1.2rem;
+      }
+      
+      .contact-bar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .main-content {
+        padding: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .skills-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="resume-wrapper">
+   <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+   </div>
+   <div class="resume-container">
+    <header class="header">
+     <div class="header-content">
+      <h1 class="name" id="resume-name">T L UMME MUBEEN</h1>
+      <p class="job-title" id="job-title">Creative Software Developer</p>
+      <div class="contact-bar">
+       <div class="contact-item">
+        <svg class="contact-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </svg><span id="email-text">tlummemubeen@email.com</span>
+       </div>
+       <div class="contact-item">
+        <svg class="contact-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+        </svg><span id="phone-text">+91-8431786179</span>
+       </div>
+       <div class="contact-item">
+        <svg class="contact-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+        </svg><span id="location-text">Bangalore, India</span>
+       </div>
+      </div>
+     </div>
+    </header>
+    <main class="main-content">
+     <section class="section">
+      <div class="section-header">
+       <div class="section-icon">
+        ✨
+       </div>
+       <h2 class="section-title" id="about-title">About Me</h2>
+      </div>
+      <p class="about-text">Passionate and creative software developer with a vibrant approach to problem-solving. I thrive on turning complex challenges into elegant solutions, combining technical expertise with innovative thinking to build applications that make a difference.</p>
+     </section>
+     <section class="section">
+      <div class="section-header">
+       <div class="section-icon">
+        🎓
+       </div>
+       <h2 class="section-title" id="education-title">Education</h2>
+      </div>
+      <div class="education-grid">
+       <div class="education-card">
+        <h3 class="degree">Bachelor of Engineering</h3>
+        <p class="institution">Computer Science &amp; Engineering</p>
+        <p class="institution">New Ebenezer Institute of Technology, Bengaluru</p>
+        <p class="graduation">Expected Graduation: 2029</p>
+       </div>
+       <div class="education-card">
+        <h3 class="degree">Higher Secondary</h3>
+        <p class="institution">Science Stream</p>
+        <p class="institution">A.V.S. Brilliant PU College</p>
+        <p class="graduation">Completed: 2024</p>
+       </div>
+      </div>
+     </section>
+     <section class="section">
+      <div class="section-header">
+       <div class="section-icon">
+        💡
+       </div>
+       <h2 class="section-title" id="skills-title">Skills</h2>
+      </div>
+      <div class="skills-container">
+       <div class="skill-bubble">
+        Python
+       </div>
+       <div class="skill-bubble">
+        Java
+       </div>
+       <div class="skill-bubble">
+        c programming
+       </div>
+      
+       </div>
+       <div class="skill-bubble">
+        Git
+       
+      </div>
+     </section>
+     <section class="section">
+      <div class="section-header">
+       <div class="section-icon">
+        🚀
+       </div>
+       <h2 class="section-title" id="projects-title">Projects</h2>
+      </div>
+      <div class="projects-grid">
+       
+    
+      
+       </div>
+       <div class="project-card">
+        <h3 class="project-title">Task Management System</h3>
+        <p class="project-description">Developed a collaborative task management tool with drag-and-drop functionality, real-time updates, team workspaces, and progress analytics. Features include kanban boards, Gantt charts, and automated notifications.</p>
+       </div>
+       <div class="project-card">
+        <h3 class="project-title">Data Visualization Dashboard</h3>
+        <p class="project-description">Created an interactive analytics dashboard for visualizing complex datasets with customizable charts, filters, and export capabilities. Integrated multiple data sources and implemented responsive design for mobile access.</p>
+       </div>
+      </div>
+     </section>
+     <section class="section">
+      <div class="section-header">
+       <div class="section-icon">
+        🎨
+       </div>
+       <h2 class="section-title" id="hobbies-title">Interests</h2>
+      </div>
+      <div class="hobbies-grid">
+       <div class="hobby-card">
+        <div class="hobby-icon">
+         🎮
+        </div>
+        <div>
+         Gaming
+        </div>
+       </div>
+       <div class="hobby-card">
+        <div class="hobby-icon">
+         📚
+        </div>
+        <div>
+         Reading
+        </div>
+       </div>
+       <div class="hobby-card">
+        <div class="hobby-icon">
+         🎵
+        </div>
+        <div>
+         Music
+        </div>
+       </div>
+       <div class="hobby-card">
+        <div class="hobby-icon">
+         ✈️
+        </div>
+        <div>
+         Travel
+        </div>
+       </div>
+       <div class="hobby-card">
+        <div class="hobby-icon">
+         💻
+        </div>
+        <div>
+         Coding
+        </div>
+       </div>
+       <div class="hobby-card">
+        <div class="hobby-icon">
+         🎨
+        </div>
+        <div>
+        Drawing/Sketch
+        </div>
+       </div>
+      </div>
+     </section>
+    </main>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      resume_name: "T L UMME MUBEEN",
+      job_title: "Creative Software Developer",
+      email_text: "tlummemubeen@gmail.com",
+      phone_text: "8431786179",
+      location_text: "Bangalore, India",
+      about_title: "About Me",
+      education_title: "Education",
+      skills_title: "Skills",
+      projects_title: "Projects",
+      hobbies_title: "Interests",
+      background_gradient: "#667eea",
+      header_gradient: "#ff6b6b",
+      text_color: "#555555",
+      accent_color: "#667eea",
+      card_gradient: "#ffecd2",
+      font_family: "Poppins",
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      document.getElementById('resume-name').textContent = config.resume_name || defaultConfig.resume_name;
+      document.getElementById('job-title').textContent = config.job_title || defaultConfig.job_title;
+      document.getElementById('email-text').textContent = config.email_text || defaultConfig.email_text;
+      document.getElementById('phone-text').textContent = config.phone_text || defaultConfig.phone_text;
+      document.getElementById('location-text').textContent = config.location_text || defaultConfig.location_text;
+      
+      document.getElementById('about-title').textContent = config.about_title || defaultConfig.about_title;
+      document.getElementById('education-title').textContent = config.education_title || defaultConfig.education_title;
+      document.getElementById('skills-title').textContent = config.skills_title || defaultConfig.skills_title;
+      document.getElementById('projects-title').textContent = config.projects_title || defaultConfig.projects_title;
+      document.getElementById('hobbies-title').textContent = config.hobbies_title || defaultConfig.hobbies_title;
+      
+      // Apply colors
+      const bgGradient = config.background_gradient || defaultConfig.background_gradient;
+      const headerGradient = config.header_gradient || defaultConfig.header_gradient;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const cardGradient = config.card_gradient || defaultConfig.card_gradient;
+      
+      document.querySelector('.resume-wrapper').style.background = `linear-gradient(135deg, ${bgGradient} 0%, ${adjustBrightness(bgGradient, -20)} 50%, ${adjustBrightness(bgGradient, 40)} 100%)`;
+      document.querySelector('.header').style.background = `linear-gradient(135deg, ${headerGradient} 0%, ${adjustBrightness(headerGradient, 20)} 100%)`;
+      
+      document.querySelectorAll('.about-text, .project-description, .institution, .graduation').forEach(el => {
+        el.style.color = textColor;
+      });
+      
+      document.querySelectorAll('.section-title').forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${accentColor}, ${adjustBrightness(accentColor, -20)})`;
+        el.style.webkitBackgroundClip = 'text';
+        el.style.webkitTextFillColor = 'transparent';
+        el.style.backgroundClip = 'text';
+      });
+      
+      document.querySelectorAll('.section-icon').forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${accentColor}, ${adjustBrightness(accentColor, -20)})`;
+      });
+      
+      document.querySelectorAll('.project-title, .degree').forEach(el => {
+        el.style.color = accentColor;
+      });
+      
+      document.querySelectorAll('.education-card, .hobby-card').forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${cardGradient} 0%, ${adjustBrightness(cardGradient, -10)} 100%)`;
+      });
+      
+      // Apply font
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = "'Poppins', 'Segoe UI', sans-serif";
+      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      
+      // Apply font size
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.querySelector('.name').style.fontSize = `${baseSize * 5}px`;
+      document.querySelector('.job-title').style.fontSize = `${baseSize * 2.2}px`;
+      document.querySelectorAll('.section-title').forEach(el => {
+        el.style.fontSize = `${baseSize * 2.8}px`;
+      });
+      document.querySelector('.about-text').style.fontSize = `${baseSize * 1.5}px`;
+      document.querySelectorAll('.project-title, .degree').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.8}px`;
+      });
+      document.body.style.fontSize = `${baseSize}px`;
+    }
+    
+    function adjustBrightness(hex, percent) {
+      const num = parseInt(hex.replace('#', ''), 16);
+      const r = Math.max(0, Math.min(255, ((num >> 16) & 0xff) + percent));
+      const g = Math.max(0, Math.min(255, ((num >> 8) & 0xff) + percent));
+      const b = Math.max(0, Math.min(255, (num & 0xff) + percent));
+      return '#' + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_gradient || defaultConfig.background_gradient,
+              set: (value) => {
+                config.background_gradient = value;
+                window.elementSdk.setConfig({ background_gradient: value });
+              }
+            },
+            {
+              get: () => config.header_gradient || defaultConfig.header_gradient,
+              set: (value) => {
+                config.header_gradient = value;
+                window.elementSdk.setConfig({ header_gradient: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            },
+            {
+              get: () => config.card_gradient || defaultConfig.card_gradient,
+              set: (value) => {
+                config.card_gradient = value;
+                window.elementSdk.setConfig({ card_gradient: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["resume_name", config.resume_name || defaultConfig.resume_name],
+          ["job_title", config.job_title || defaultConfig.job_title],
+          ["email_text", config.email_text || defaultConfig.email_text],
+          ["phone_text", config.phone_text || defaultConfig.phone_text],
+          ["location_text", config.location_text || defaultConfig.location_text],
+          ["about_title", config.about_title || defaultConfig.about_title],
+          ["education_title", config.education_title || defaultConfig.education_title],
+          ["skills_title", config.skills_title || defaultConfig.skills_title],
+          ["projects_title", config.projects_title || defaultConfig.projects_title],
+          ["hobbies_title", config.hobbies_title || defaultConfig.hobbies_title]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a62ab6f142974f4',t:'MTc2NDQyNTIyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
